@@ -1,0 +1,75 @@
+# A simple Python program to track student grades
+def student_grade():
+    grades = {}
+    while True:
+        # Ask the user to enter the subject name
+        subject = input("Enter subject name (or 'done' to finish): ")
+        if subject.lower() == 'done':  
+            break
+
+        # Ask the user to enter the grade for the subject
+        grade = float(input(f"Enter grade for {subject}: "))
+        grades[subject] = grade  # Store the grade in the dictionary
+    return grades
+
+# Function to calculate the average grade
+def calculate_average(grades):
+    total = sum(grades.values())  
+    count = len(grades)  
+    if count == 0: 
+        return 0
+    average = total / count 
+    return average
+
+# Function to determine the letter grade based on the average
+def calculate_letter_grade(average):
+    if average >= 90:
+        return 'A'
+    elif average >= 80:
+        return 'B'
+    elif average >= 70:
+        return 'C'
+    elif average >= 60:
+        return 'D'
+    else:
+        return 'F'
+
+# Function to determine the GPA based on the average
+def calculate_gpa(average):
+    if average >= 90:
+        return 9.0
+    elif average >= 80:
+        return 8.0
+    elif average >= 70:
+        return 7.0
+    elif average >= 60:
+        return 6.0
+    else:
+        return 0.0
+
+# Main function to run the program
+def main():
+    print("Welcome to the Student Grade Tracker!")
+    
+    # Ask the user for the student's name
+    student_name = input("Enter the student's name: ")
+    
+    # Get the grades for the subjects
+    grades = student_grade()
+
+    average = calculate_average(grades)
+
+    letter_grade = calculate_letter_grade(average)
+    gpa = calculate_gpa(average)
+
+    # Display the results
+    print(f"\nStudent: {student_name}")
+    print("Grades:")
+    for subject, grade in grades.items():
+        print(f"{subject}: {grade}")
+    
+    print(f"\nAverage Grade: {average:.2f}")
+    print(f"Letter Grade: {letter_grade}")
+    print(f"GPA: {gpa:.2f}")
+
+main()
